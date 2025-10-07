@@ -1,0 +1,201 @@
+<!-- ✅ Responsive Navbar with Dropdown -->
+<nav class="navbar">
+  <div class="nav-container">
+    
+    <!-- Brand -->
+    <a href="index.html" class="nav-brand">
+      <img src="image/logo.png" alt="nodevik Logo">
+    </a>
+
+    <!-- Hamburger toggle -->
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <!-- Menu -->
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+
+      <!-- Dropdown Menu -->
+      <li class="dropdown">
+        <a href="services.html">Services ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="development services.html">Development Services</a></li>
+          <li><a href="Digital Marketing.html">Digital Marketing</a></li>
+          <li><a href="Online Marketing.html">Online Marketing</a></li>
+          <li><a href="Graphic Designing.html">Graphic Designing</a></li>
+        </ul>
+      </li>
+
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="https://wa.me/917410858698" class="call-btn" target="_blank">WhatsApp Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+/* ===== Navbar Base ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  background: white;
+  color:black;
+  position: fixed;   /* ✅ changed to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;     /* ✅ stay above everything */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand img {
+  height: 53px;
+  width: auto;
+}
+
+/* ===== Menu ===== */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  position: relative;
+}
+
+.nav-menu li a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all .3s ease;
+  display: block;
+}
+
+.nav-menu li a:hover {
+  background: rgba(255,255,255,0.2);
+  color: #000;
+}
+
+.call-btn {
+  background: #000;
+  color: #fff !important;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.call-btn:hover {
+  background: #fff;
+  color: #000 !important;
+}
+
+/* ===== Dropdown ===== */
+.dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: linear-gradient(45deg,#ff4b2b,#ff4b2b);
+  min-width: 200px;
+  border-radius: 6px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all .3s ease;
+  z-index: 999;
+}
+
+.dropdown:hover .dropdown-menu {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.dropdown-menu li a {
+  padding: 10px 15px;
+}
+.dropdown-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #000;
+}
+
+/* ===== Hamburger Toggle ===== */
+#menu-toggle {
+  display: none;
+}
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.menu-icon span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  transition: .3s;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .menu-icon { display: flex; }
+  
+  .nav-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: linear-gradient(45deg,#ff4b2b,#ceea32);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+
+  .nav-menu li { text-align: center; padding: 10px 0; }
+
+  /* menu toggle working */
+  #menu-toggle:checked + .menu-icon + .nav-menu {
+    max-height: 600px;
+  }
+
+  /* mobile dropdown */
+  .dropdown-menu {
+    position: static;
+    background: rgba(0,0,0,0.1);
+    max-height: none;
+    opacity: 1;
+    display: none;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* ===== Page Content Padding (to avoid navbar overlap) ===== */
+body::before {
+  content: "";
+  display: block;
+  height: 70px; /* equal to navbar height */
+}
+</style>
